@@ -7,8 +7,8 @@ import {signOut} from "../../actions/AuthAction";
 class HeaderComponent extends React.Component {
 
     handleLogout = () => {
-        this.props.signOut();
-        this.redirect();
+        this.props.signOut(this.redirect);
+        //this.redirect();
     }
 
     redirect = () => {
@@ -56,13 +56,13 @@ class HeaderComponent extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.auth.isLoggedIn
+        isLoggedIn: state.auth.isLoggedIn,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signOut: () => dispatch(signOut())
+        signOut: (data) => dispatch(signOut(data))
     }
 }
 

@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import {Spin, message, Row, Col} from 'antd';
 import ReservationForm from './ReservationForm';
-import {RESERVATION_FORM_ACTION_ADD, RESERVATION_FORM_ACTION_EDIT} from '../../constants/reservation';
+import {RESERVATION_FORM_ACTION_EDIT} from '../../constants/reservation';
 import {getReservation} from '../../actions/ReservationAction';
-import {ADD, UPDATE} from '../../constants/actions';
+import {UPDATE} from '../../constants/actions';
 
 
 class EditReservation extends React.Component {
@@ -20,10 +20,7 @@ class EditReservation extends React.Component {
     }
 
     render() {
-        const { loading, reservation, errorMessage } = this.props;
-        // if (errorMessage) {
-        //     this.redirect(errorMessage);
-        // }
+        const { loading, reservation } = this.props;
         return (
             <>
                 {

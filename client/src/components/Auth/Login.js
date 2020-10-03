@@ -31,7 +31,7 @@ class Login extends React.Component {
 
     formRef = React.createRef();
     render() {
-        if (this.props.isLoggedIn) {
+        if (localStorage.getItem('token')) {
             return <Redirect to={'/dashboard'} />
         }
         return (

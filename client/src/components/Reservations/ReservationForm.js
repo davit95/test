@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import moment from'moment';
-import {Form, Input, Button, Select, DatePicker, Divider, Col, Row, message} from 'antd';
+import {Form, Input, Button, Select, DatePicker, Divider, Col, Row} from 'antd';
 import {ADD, UPDATE} from "../../constants/actions";
 import {
     updateReservation,
@@ -63,8 +63,10 @@ class ReservationForm extends Component {
         this.formRef.current.resetFields();
     }
 
+    disableDateRange = current => current && current < moment().endOf('second');
+
     render() {
-        const { actionText, reservation, action, errorMessage } = this.props;
+        const { actionText, reservation, action } = this.props;
         const { RangePicker } = DatePicker;
         if (action === UPDATE) {
             reservation.date = [moment(reservation.start_date), moment(reservation.end_date)];
@@ -93,7 +95,8 @@ class ReservationForm extends Component {
                             },
                         ]}
                     >
-                        <RangePicker format={'YYYY-MM-DD hh:mm:ss'} showTime />
+                        <RangePicker
+                            disabledDate={this.disableDateRange} format={'YYYY-MM-DD hh:mm:ss'} showTime />
                     </Form.Item>
                     <Form.Item
                         label="Notes"

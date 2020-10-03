@@ -71,7 +71,7 @@ export const signUp = (credentials) => {
     }
 }
 
-export const signOut = () => {
+export const signOut = (redirect) => {
     return async (dispatch, getState) => {
         dispatch({
             type: SIGN_OUT_REQUEST
@@ -86,6 +86,7 @@ export const signOut = () => {
                 alert: alert,
                 message: message
             });
+            redirect()
         } catch (error) {
             dispatch({
                 type: SIGN_OUT_FAIL,
