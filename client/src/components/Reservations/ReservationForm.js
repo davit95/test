@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import moment from'moment';
-import {Form, Input, Button, Select, DatePicker, Divider, Col, Row} from 'antd';
+import {Form, Input, Button, Select, DatePicker, Divider, Col, Row } from 'antd';
 import {ADD, UPDATE} from "../../constants/actions";
 import {
     updateReservation,
@@ -31,7 +31,7 @@ class ReservationForm extends Component {
         if (action === UPDATE) {
             await this.props.updateReservation(data, id);
         }
-        this.redirect('/reservation-list');
+        this.redirect();
     }
 
     redirect = () => {
@@ -153,8 +153,7 @@ class ReservationForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.reservation.updateReservationLoading,
-    errorMessage: state.reservation.errorMessage
+    loading: state.reservation.loading,
 })
 
 const mapDispatchToProps = dispacth => {

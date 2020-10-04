@@ -13,6 +13,9 @@ import {
     ADD_RESERVATION_SUCCESS,
     ADD_RESERVATION_FAIL
 } from '../constants/reservation';
+import {
+    alertMessage
+} from '../components/Alert/Alert';
 
 export const getReservations = () => {
     return async (dispatch, getState) => {
@@ -21,19 +24,21 @@ export const getReservations = () => {
         })
         try {
             const response = await http.get(`reservations`);
-            const reservations = response.data;
+            const { reservations } = response.data;
             dispatch({
                 type: GET_RESERVATIONS_SUCCESS,
                 reservations: reservations
             });
 
         } catch (error) {
+            const { alert, message } = error.response.data;
             dispatch({
                 type: GET_RESERVATIONS_FAIL,
-                message: error.response.data.message
-            })
+                message: error.response.data.message,
+                alert: error.response.data.alert,
+            });
+            alertMessage(alert, message);
         }
-
     }
 }
 
@@ -44,17 +49,18 @@ export const getReservation = (id) => {
         })
         try {
             const response = await http.get(`reservations/${id}`);
-            const reservation = response.data;
+            const { reservation } = response.data;
             dispatch({
                 type: GET_RESERVATION_BY_ID_SUCCESS,
                 reservation: reservation
             });
 
         } catch (error) {
+            const { alert, message } = error.response.data;
             dispatch({
-                type: GET_RESERVATION_BY_ID_FAIL,
-                message: error.response.data.message
-            })
+                type: GET_RESERVATION_BY_ID_FAIL
+            });
+            alertMessage(alert, message);
         }
 
     }
@@ -69,16 +75,18 @@ export const updateReservation = (data, id) => {
             const response = await http.put(`reservations/${id}`, {
                 ...data
             });
-            const reservation = response.data;
+            const { reservation, alert, message } = response.data;
             dispatch({
                 type: UPDATE_RESERVATION_SUCCESS,
                 reservation: reservation
             });
+            alertMessage(alert, message);
         } catch (error) {
+            const { alert, message } = error.response.data;
             dispatch({
-                type: UPDATE_RESERVATION_FAIL,
-                message: error.response.data.message
-            })
+                type: UPDATE_RESERVATION_FAIL
+            });
+            alertMessage(alert, message);
         }
 
     }
@@ -93,18 +101,19 @@ export const addReservation = (data) => {
             const response = await http.post(`reservations`, {
                 ...data
             });
-            const reservation = response.data;
+            const { reservation, alert, message } = response.data;
             reservation.key = reservation.id;
             dispatch({
                 type: ADD_RESERVATION_SUCCESS,
                 reservation: reservation
             });
-
+            alertMessage(alert, message);
         } catch (error) {
+            const { alert, message } = error.response.data;
             dispatch({
-                type: ADD_RESERVATION_FAIL,
-                message: error.response.data.message
-            })
+                type: ADD_RESERVATION_FAIL
+            });
+            alertMessage(alert, message);
         }
     }
 }

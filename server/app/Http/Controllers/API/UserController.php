@@ -32,7 +32,7 @@ class UserController extends Controller
             return response([
                 'errors' => $validator->errors()->all(),
                 'alert' => config('alert.messages.warning'),
-                'message' => 'validation failed'
+                'message' => 'The user with given email already exists. Please provide another one'
             ], 422);
         }
         $request['password'] = bcrypt($request['password']);
@@ -62,7 +62,7 @@ class UserController extends Controller
         $credentials = request(['email', 'password']);
         if (!\Auth::attempt($credentials)) {
             return response()->json([
-                'message' => 'Invalid Credentials',
+                'message' => 'Invalid Username or Password',
                 'alert' => config('alert.messages.warning')
             ], 401);
         }

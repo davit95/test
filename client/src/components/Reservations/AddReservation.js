@@ -45,7 +45,7 @@ class AddReservation extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.reservation.updateReservationLoading,
+    loading: state.reservation.loading,
     rooms: state.room.rooms,
     errorMessage: state.room.errorMessage
 })

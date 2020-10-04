@@ -11,14 +11,12 @@ import {
     ADD_RESERVATION_REQUEST,
     ADD_RESERVATION_SUCCESS,
     ADD_RESERVATION_FAIL
-} from '../constants/reservation'
+} from '../constants/reservation';
 
 const initState = {
     loading: false,
     reservations: [],
     reservation: {},
-    errorMessage: null,
-    updateReservationLoading: false
 }
 
 const reservationReducer = (state = initState, action) => {
@@ -37,7 +35,6 @@ const reservationReducer = (state = initState, action) => {
         case GET_RESERVATIONS_FAIL:
             return {
                 ...state,
-                errorMessage: action.message,
                 loading: false
             }
         case GET_RESERVATION_BY_ID_REQUEST:
@@ -54,7 +51,6 @@ const reservationReducer = (state = initState, action) => {
         case GET_RESERVATION_BY_ID_FAIL:
             return {
                 ...state,
-                errorMessage: action.message,
                 loading: false
             }
         case UPDATE_RESERVATION_REQUEST:
@@ -71,7 +67,6 @@ const reservationReducer = (state = initState, action) => {
         case UPDATE_RESERVATION_FAIL:
             return {
                 ...state,
-                errorMessage: action.message,
                 loading: false
             }
         case ADD_RESERVATION_REQUEST:
@@ -88,7 +83,8 @@ const reservationReducer = (state = initState, action) => {
         case ADD_RESERVATION_FAIL:
             return {
                 ...state,
-                errorMessage: action.message,
+                alertMessage: action.message,
+                alert: action.alert,
                 loading: false
             }
         default:

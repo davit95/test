@@ -13,16 +13,6 @@ class Login extends React.Component {
     onFinish = async (values) => {
         await this.props.signIn(values);
         await this.props.getUser();
-        this.alert(this.props.isLoggedIn);
-    }
-
-    alert = (isLoggedIn) => {
-        const { alertMessage } = this.props;
-        if (isLoggedIn) {
-            message.success(alertMessage);
-        } else {
-            message.error(alertMessage);
-        }
     }
 
     render() {
@@ -56,7 +46,13 @@ class Login extends React.Component {
                                 </Form.Item>
                                 <Form.Item
                                     name="password"
-                                    rules={[{ required: true, message: 'Please input your Password!' }]}
+                                    rules={[
+                                        { required: true, message: 'Please input your Password!' },
+                                        {
+                                            min: 5,
+                                            max: 15
+                                        },
+                                    ]}
                                 >
                                     <Input
                                         prefix={<LockOutlined className="site-form-item-icon" />}

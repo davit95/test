@@ -13,6 +13,7 @@ import {
     GET_USER_SUCCESS,
     GET_USER_FAIL
 } from '../constants/auth';
+import {alertMessage} from '../components/Alert/Alert';
 
 export const signIn = (credentials) => {
     return async (dispatch, getState) => {
@@ -28,16 +29,15 @@ export const signIn = (credentials) => {
             localStorage.setItem('user_id', user.id);
             setToken(localStorage.getItem('token'));
             dispatch({
-                type: SIGN_IN_SUCCESS,
-                alert: alert,
-                message: message
+                type: SIGN_IN_SUCCESS
             });
+            alertMessage(alert, message);
         } catch (error) {
+            const { alert, message } = error.response.data;
             dispatch({
-                type: SIGN_IN_FAIL,
-                message: error.response.data.message,
-                alert: error.response.data.alert
-            })
+                type: SIGN_IN_FAIL
+            });
+            alertMessage(alert, message);
         }
 
     }
@@ -57,15 +57,16 @@ export const signUp = (credentials) => {
             localStorage.setItem('user_id', user.id);
             setToken(localStorage.getItem('token'));
             dispatch({
-                type: SIGN_UP_SUCCESS,
-                alert: alert,
-                message: message
+                type: SIGN_UP_SUCCESS
             });
+            alertMessage(alert, message);
         } catch (error) {
+            const { alert, message } = error.response.data;
             dispatch({
                 type: SIGN_UP_FAIL,
                 message: error.response.data.message
-            })
+            });
+            alertMessage(alert, message);
         }
 
     }
@@ -82,16 +83,17 @@ export const signOut = (redirect) => {
             localStorage.removeItem('token');
             localStorage.removeItem('user_id');
             dispatch({
-                type: SIGN_OUT_SUCCESS,
-                alert: alert,
-                message: message
+                type: SIGN_OUT_SUCCESS
             });
+            alertMessage(alert, message);
             redirect()
         } catch (error) {
+            const { alert, message } = error.response.data;
             dispatch({
                 type: SIGN_OUT_FAIL,
                 message: error.response.data.message
-            })
+            });
+            alertMessage(alert, message);
         }
 
     }

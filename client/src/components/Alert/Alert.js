@@ -1,14 +1,31 @@
-import React from 'react';
 import {message} from 'antd';
+import {
+    ALERT_WARNING,
+    ALERT_SUCCESS,
+    ALERT_ERROR
+} from '../../constants/alerts';
 
-export const success = (alertMessage) => {
+const success = (alertMessage) => {
     message.success(alertMessage);
 };
 
-export const error = (alertMessage) => {
+const error = (alertMessage) => {
     message.error(alertMessage);
 };
 
-export const warning = (alertMessage) => {
+const warning = (alertMessage) => {
     message.warning(alertMessage);
+}
+
+export const alertMessage = (type, message) => {
+    switch (type) {
+        case ALERT_WARNING:
+            return warning(message);
+        case ALERT_SUCCESS:
+            return success(message);
+        case ALERT_ERROR:
+            return error(message);
+        default:
+                return
+    }
 }

@@ -12,15 +12,12 @@ import {
     GET_USER_SUCCESS,
     GET_USER_FAIL
 } from '../constants/auth';
-import {ALERT_SUCCESS} from '../constants/alerts';
 
 const initState = {
     isLoggedIn: false,
     loading: false,
     user: {},
-    hasError: false,
-    alert: ALERT_SUCCESS,
-    alertMessage: ''
+    hasError: false
 }
 
 const authReducer = (state = initState, action) => {
@@ -34,18 +31,14 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 loading: false,
-                isLoggedIn: true,
-                alert: action.alert,
-                alertMessage: action.message
+                isLoggedIn: true
             }
         case SIGN_IN_FAIL:
             return {
                 ...state,
                 hasError: true,
                 isLoggedIn: false,
-                loading: false,
-                alert: action.alert,
-                alertMessage: action.message,
+                loading: false
             }
         case SIGN_UP_REQUEST:
             return {
@@ -56,15 +49,11 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 loading: false,
-                isLoggedIn: true,
-                alert: action.alert,
-                alertMessage: action.message
+                isLoggedIn: true
             }
         case SIGN_UP_FAIL:
             return {
                 ...state,
-                alert: action.alert,
-                alertMessage: action.message,
                 loading: false
             }
         case SIGN_OUT_REQUEST:
@@ -76,17 +65,12 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 loading: false,
-                isLoggedIn: false,
-                alert: action.alert,
-                alertMessage: action.message
+                isLoggedIn: false
             }
         case SIGN_OUT_FAIL:
             return {
                 ...state,
-                errorMessage: action.message,
-                loading: false,
-                alert: action.alert,
-                alertMessage: action.message
+                loading: false
             }
         case GET_USER_REQUEST:
             return {
@@ -103,7 +87,6 @@ const authReducer = (state = initState, action) => {
         case GET_USER_FAIL:
             return {
                 ...state,
-                errorMessage: action.message,
                 loading: false
             }
         default:
