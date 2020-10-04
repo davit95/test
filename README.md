@@ -10,10 +10,11 @@ Backend configuration
 3) copy the contents of .env.example to .env file
 
 4) in .env file set the following credentials
+
 	DB_DATABASE=laravel
 
 	DB_USERNAME=root
-	
+
 	DB_PASSWORD=secret
 
 5) run composer install
