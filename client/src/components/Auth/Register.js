@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from "react-router-dom";
-import {Form, Input, Button, Row, Col, Divider, message} from 'antd';
+import {Form, Input, Button, Row, Col, Divider} from 'antd';
 import {UserOutlined, LockOutlined, MailOutlined} from '@ant-design/icons';
 import {signUp, getUser} from '../../actions/AuthAction';
 import '../../assets/common.scss';
@@ -10,17 +10,6 @@ import '../../assets/common.scss';
 class Register extends React.Component {
     onFinish = async (values) => {
         await this.props.signUp(values);
-        await this.props.getUser();
-        this.alert(this.props.isLoggedIn);
-    }
-
-    alert = (isLoggedIn) => {
-        const { alertMessage } = this.props;
-        if (isLoggedIn) {
-            message.success(alertMessage);
-        } else {
-            message.error(alertMessage);
-        }
     }
 
     render() {

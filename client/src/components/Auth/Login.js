@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter, Redirect} from 'react-router-dom';
-import {Form, Input, Button, Row, Col, Divider, message} from 'antd';
+import {Form, Input, Button, Row, Col, Divider} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import {signIn, getUser} from '../../actions/AuthAction';
+import {signIn} from '../../actions/AuthAction';
 import './auth.scss';
 import '../../assets/common.scss';
 
@@ -12,7 +12,6 @@ class Login extends React.Component {
 
     onFinish = async (values) => {
         await this.props.signIn(values);
-        await this.props.getUser();
     }
 
     render() {
@@ -88,8 +87,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signIn: (data) => dispatch(signIn(data)),
-        getUser: () => dispatch(getUser()),
+        signIn: (data) => dispatch(signIn(data))
     }
 }
 

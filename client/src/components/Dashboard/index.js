@@ -7,7 +7,7 @@ export default function () {
     return (
         <>
             <Row justify={'center'} className="dashboard-page">
-                <Col>
+                <Col className="gutter-row">
                     <Link to={'/add-reservation'}>
                         <Button className="dashboard-button" type={'primary'}>New Reservation</Button>
                     </Link>

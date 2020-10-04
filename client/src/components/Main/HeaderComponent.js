@@ -22,7 +22,7 @@ class HeaderComponent extends React.Component {
                 <Menu theme="dark" mode="horizontal">
                     {
                         token &&
-                            <Menu.Item key="1" className="dashboard-link">
+                            <Menu.Item key="1" className="dashboard-link left">
                                 <Link to={'/dashboard'}>Dashboard</Link>
                             </Menu.Item>
                     }
@@ -30,6 +30,7 @@ class HeaderComponent extends React.Component {
                         {
                             token ? (
                                 <Menu.Item
+                                    className="right"
                                     onClick={this.handleLogout}
                                     key="2"
                                 >
@@ -37,10 +38,10 @@ class HeaderComponent extends React.Component {
                                 </Menu.Item>
                             ) : (
                                 <>
-                                    <Menu.Item key="3">
+                                    <Menu.Item className="right" key="3">
                                         <Link to={'/login'}>Login</Link>
                                     </Menu.Item>
-                                    <Menu.Item key="4">
+                                    <Menu.Item className="right" key="4">
                                         <Link to={'/register'}>Register</Link>
                                     </Menu.Item>
                                 </>

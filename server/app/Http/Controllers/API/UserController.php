@@ -72,7 +72,7 @@ class UserController extends Controller
             'token' => $token,
             'user' => $user,
             'token_type' => 'Bearer',
-            'message' => 'You have been successfully logged in',
+            'message' => 'You have been successfully logged in as ' . $user->name,
             'alert' => config('alert.messages.success')
         ], 200);
     }

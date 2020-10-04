@@ -3,11 +3,15 @@
 .header {
   background-color: $bg-color;
   .ant-menu {
-    display: flex;
-    justify-content: flex-end;
     background-color: transparent;
   }
 
+  .right {
+    float: right;
+  }
+  .left {
+    float: left;
+  }
   .dashboard-link {
     justify-content: flex-start;
   }
