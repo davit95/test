@@ -19,7 +19,7 @@ const Routes = (props) => {
         <Router>
             <Layout>
                 <HeaderComponent />
-                <Content style={{ padding: '0 50px', marginTop: 64, minHeight: '500px' }}>
+                <Content className='content' style={{ padding: '0 50px', marginTop: 64, minHeight: '500px' }}>
                     <Switch>
                         <Route exact path='/' component={HomePage} />
                         <Route path='/login' component={Login} />

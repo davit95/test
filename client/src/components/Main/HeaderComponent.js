@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import {Link, withRouter} from 'react-router-dom';
 import {Menu, Layout} from 'antd';
 import {signOut} from "../../actions/AuthAction";
+import './header.scss';
 
 class HeaderComponent extends React.Component {
 
     handleLogout = () => {
         this.props.signOut(this.redirect);
-        //this.redirect();
     }
 
     redirect = () => {
@@ -19,10 +19,10 @@ class HeaderComponent extends React.Component {
         const token = localStorage.getItem('token');
         return (
             <Header className='header'>
-                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+                <Menu theme="dark" mode="horizontal">
                     {
                         token &&
-                            <Menu.Item key="1">
+                            <Menu.Item key="1" className="dashboard-link">
                                 <Link to={'/dashboard'}>Dashboard</Link>
                             </Menu.Item>
                     }
@@ -32,16 +32,15 @@ class HeaderComponent extends React.Component {
                                 <Menu.Item
                                     onClick={this.handleLogout}
                                     key="2"
-                                    style={{ float: 'right' }}
                                 >
                                     Logout
                                 </Menu.Item>
                             ) : (
                                 <>
-                                    <Menu.Item key="3" style={{ float: 'right' }}>
+                                    <Menu.Item key="3">
                                         <Link to={'/login'}>Login</Link>
                                     </Menu.Item>
-                                    <Menu.Item key="4" style={{ float: 'right' }}>
+                                    <Menu.Item key="4">
                                         <Link to={'/register'}>Register</Link>
                                     </Menu.Item>
                                 </>

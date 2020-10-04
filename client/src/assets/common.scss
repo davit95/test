@@ -1,0 +1,14 @@
+@import './variables';
+
+.page-title {
+  text-align: center;
+  color: $bg-color;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.form-submit-button {
+  width: 100%;
+  background-color: $bg-color;
+  border-color: $bg-color;
+}

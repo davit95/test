@@ -1,0 +1,11 @@
+@import 'src/assets/variables';
+
+.dashboard-page {
+  .dashboard-button {
+    background-color: $bg-color;
+    border-color: $bg-color;
+    &:hover {
+      background-color: $bg-hover-color;
+    }
+  }
+}

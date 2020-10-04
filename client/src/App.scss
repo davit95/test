@@ -1,1 +1,37 @@
-@import "~bootstrap/scss/bootstrap";
+$bg-color: #202469;
+
+
+
+.parent {
+  display: flex;
+}
+
+
+
+.content {
+  .ant-divider {
+    border-top-color: $bg-color;
+  }
+}
+
+.ant-menu-item-active {
+  &:hover {
+    background-color: #091552 !important;
+  }
+  &:active {
+    background-color: #091552 !important;
+  }
+}
+
+.ant-menu-item-selected {
+  background-color: #091552 !important;
+}
+
+
+
+
+
+
+//.login-form {
+//  text-align: center;
+//}

@@ -3,6 +3,7 @@ import {applyMiddleware, compose, createStore} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import 'antd/dist/antd.css';
+import './App.scss';
 
 import AppRouter from './components/App/AppRouter';
 

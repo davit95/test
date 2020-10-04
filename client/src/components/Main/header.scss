@@ -1,0 +1,14 @@
+@import 'src/assets/variables';
+
+.header {
+  background-color: $bg-color;
+  .ant-menu {
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+  }
+
+  .dashboard-link {
+    justify-content: flex-start;
+  }
+}
