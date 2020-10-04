@@ -30,7 +30,8 @@ Backend configuration
 8) run:
 	php artisan serve
 
-9) run
+9) run:
+
 	php artisan migrate
 	
 	php artisan db:seed
