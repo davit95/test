@@ -1,29 +1,29 @@
 
-1) git clone git@github.com:davit95/test.git
+git clone git@github.com:davit95/test.git
 
 Backend configuration
 
-2) cd project/server
+1) cd project/server
 
-3) create .env empty file 
+2) create .env empty file 
 
-4) copy the contents of .env.example to .env file
+3) copy the contents of .env.example to .env file
 
-5) in .env file set the following credentials
+4) in .env file set the following credentials
 	DB_DATABASE=laravel
 	DB_USERNAME=root
 	DB_PASSWORD=secret
 
-6) run composer install
+5) run composer install
 
-7) for linux: 
+6) for linux: 
 	sudo chmod -R 777 storage/
 	sudo chmod -R 777 bootstrap/
 
-8) run:
+7) run:
 	php artisan key:generate
 
-9) run:
+8) run:
 	php artisan serve
 
 Frontend configuration
