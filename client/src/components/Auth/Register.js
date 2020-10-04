@@ -4,7 +4,7 @@ import {Redirect} from "react-router-dom";
 import {Form, Input, Button, Row, Col, Divider, message} from 'antd';
 import {UserOutlined, LockOutlined, MailOutlined} from '@ant-design/icons';
 import {signUp, getUser} from '../../actions/AuthAction';
-import './auth.scss';
+import '../../assets/common.scss';
 
 
 class Register extends React.Component {
@@ -32,15 +32,15 @@ class Register extends React.Component {
                 <Col span={24}>
                     <Row justify={'center'}>
                         <Col span={8}>
-                            <h1 className="auth-title">Register page</h1>
+                            <h1 className="page-title">Register page</h1>
                         </Col>
                     </Row>
                     <Divider />
                     <Row justify={'center'}>
-                        <Col span={8} className="login-form">
+                        <Col span={8}>
                             <Form
                                 name="register-form"
-                                className="login-form"
+                                className="register-form"
                                 onFinish={this.onFinish}
                             >
                                 <Form.Item
@@ -98,7 +98,7 @@ class Register extends React.Component {
                                 </Form.Item>
 
                                 <Form.Item>
-                                    <Button type="primary" htmlType="submit" className="auth-form-submit-button">
+                                    <Button type="primary" htmlType="submit" className="form-submit-button">
                                         Register
                                     </Button>
                                 </Form.Item>

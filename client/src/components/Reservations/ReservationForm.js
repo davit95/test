@@ -9,28 +9,7 @@ import {
     addReservation,
 } from '../../actions/ReservationAction';
 
-
-const layout = {
-    labelCol: {
-        span: 8,
-    },
-    wrapperCol: {
-        span: 8,
-    },
-};
-const tailLayout = {
-    wrapperCol: {
-        offset: 10,
-        span: 16,
-    },
-};
-
 class ReservationForm extends Component {
-
-    state = {
-        disabled: true,
-        data: []
-    }
 
     formRef = React.createRef();
 
@@ -72,90 +51,103 @@ class ReservationForm extends Component {
             reservation.date = [moment(reservation.start_date), moment(reservation.end_date)];
         }
         return (
-            <>
-                <Row justify={'center'}>
-                    <Col>
-                        <h1>{`${actionText} Form`}</h1>
-                    </Col>
-                </Row>
-                <Divider />
-                <Form
-                    {...layout}
-                    ref={this.formRef}
-                    initialValues={reservation}
-                    onFinish={(values, id) => this.onFinish(values, reservation.id)}
-                >
-                    <Form.Item
-                        label="Date"
-                        name="date"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input armenian name!',
-                            },
-                        ]}
-                    >
-                        <RangePicker
-                            disabledDate={this.disableDateRange} format={'YYYY-MM-DD hh:mm:ss'} showTime />
-                    </Form.Item>
-                    <Form.Item
-                        label="Notes"
-                        name="notes"
-                        rules={[
-                            {
-                                required: true,
-                                message: 'Please input armenian name!',
-                            },
-                        ]}
-                    >
-                        <Input.TextArea />
-                    </Form.Item>
-                    {
-                        action === ADD &&
-                        <Form.Item
-                            label="Rooms"
-                            name="room_id"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input armenian name!',
-                                },
-                            ]}
-                        >
-                            <Select
-                                placeholder="Select room"
-                                allowClear
+            <Row className="add-reservation-page" justify={'center'} gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+                <Col span={24}>
+                    <Row justify={'center'}>
+                        <Col span={8}>
+                            <h1 className="page-title">{`${actionText} Form`}</h1>
+                        </Col>
+                    </Row>
+                    <Divider />
+                    <Row justify={'center'}>
+                        <Col span={8}>
+                            <Form
+                                ref={this.formRef}
+                                name="add-reservation-form"
+                                className="add-reservation-form"
+                                initialValues={reservation}
+                                onFinish={(values, id) => this.onFinish(values, reservation.id)}
                             >
+                                <Form.Item
+                                    label="Date"
+                                    labelCol={{ span: 24 }}
+                                    name="date"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input armenian name!',
+                                        },
+                                    ]}
+                                >
+                                    <RangePicker
+                                        disabledDate={this.disableDateRange} format={'YYYY-MM-DD hh:mm:ss'} showTime />
+                                </Form.Item>
+                                <Form.Item
+                                    name="notes"
+                                    label="notes"
+                                    labelCol={{ span: 24 }}
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input armenian name!',
+                                        },
+                                    ]}
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
                                 {
-                                    this.props.rooms.map(room =>
-                                        <Select.Option
-                                            key={room.id}
-                                            value={room.id}>
-                                            {room.name}
-                                        </Select.Option>
-                                    )
+                                    action === ADD &&
+                                    <Form.Item
+                                        label="Room"
+                                        labelCol={{ span: 24 }}
+                                        name="room_id"
+                                        rules={[
+                                            {
+                                                required: true,
+                                                message: 'Please input armenian name!',
+                                            },
+                                        ]}
+                                    >
+                                        <Select
+                                            placeholder="Select room"
+                                            allowClear
+                                        >
+                                            {
+                                                this.props.rooms.map(room =>
+                                                    <Select.Option
+                                                        key={room.id}
+                                                        value={room.id}>
+                                                        {room.name}
+                                                    </Select.Option>
+                                                )
+                                            }
+                                        </Select>
+                                    </Form.Item>
                                 }
-                            </Select>
-                        </Form.Item>
-                    }
-                    <Form.Item {...tailLayout}>
-                        <Button
-                            htmlType="submit"
-                            type="primary"
-                            loading={this.props.loading}
-                        >
-                            { actionText }
-                        </Button>
-                        <Divider type={'vertical'} />
-                        <Button
-                            type="primary"
-                            onClick={this.revert}
-                        >
-                            Revert
-                        </Button>
-                    </Form.Item>
-                </Form>
-            </>
+                                <Form.Item>
+                                    <Button
+                                        htmlType="submit"
+                                        className="form-submit-button"
+                                        type="primary"
+                                        loading={this.props.loading}
+                                    >
+                                        { actionText }
+                                    </Button>
+                                </Form.Item>
+                                <Form.Item>
+                                    <Button
+                                        type="primary"
+                                        className="link-button"
+                                        onClick={this.revert}
+                                    >
+                                        Revert
+                                    </Button>
+                                </Form.Item>
+                            </Form>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
         )
     }
 }

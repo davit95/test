@@ -5,6 +5,7 @@ import {Form, Input, Button, Row, Col, Divider, message} from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import {signIn, getUser} from '../../actions/AuthAction';
 import './auth.scss';
+import '../../assets/common.scss';
 
 
 class Login extends React.Component {
@@ -33,12 +34,12 @@ class Login extends React.Component {
                 <Col span={24}>
                     <Row justify={'center'}>
                         <Col span={8}>
-                            <h1 className="auth-title">Login page</h1>
+                            <h1 className="page-title">Login page</h1>
                         </Col>
                     </Row>
                     <Divider />
                     <Row justify={'center'}>
-                        <Col span={8} className="login-form">
+                        <Col span={8}>
                             <Form
                                 name="login-form"
                                 className="login-form"
@@ -65,7 +66,7 @@ class Login extends React.Component {
                                 </Form.Item>
 
                                 <Form.Item>
-                                    <Button type="primary" htmlType="submit" className="auth-form-submit-button">
+                                    <Button type="primary" htmlType="submit" className="form-submit-button">
                                         Log in
                                     </Button>
                                 </Form.Item>

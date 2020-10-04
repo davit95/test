@@ -3,12 +3,66 @@
 .page-title {
   text-align: center;
   color: $bg-color;
-  font-size: 30px;
-  font-weight: 700;
+  font-size: $page-title-font-size;
+  font-weight: $page-title-font-weight;
 }
 
-.form-submit-button {
+.form-submit-button, .link-button {
   width: 100%;
   background-color: $bg-color;
   border-color: $bg-color;
+  &:hover {
+    background-color: $bg-hover-color;
+    border-color: $bg-hover-color;
+  }
+  &:focus {
+    background-color: $bg-hover-color;
+    border-color: $bg-hover-color;
+  }
+}
+.content {
+  .ant-divider {
+    border-top-color: $bg-color;
+  }
+}
+
+.ant-table table {
+  border-color: $bg-color;
+}
+
+.ant-pagination-item-active a {
+  color: $bg-color;
+}
+.ant-pagination-item-active {
+  border-color: $bg-color;
+}
+
+.ant-table-thead > tr > th {
+  border-color: $bg-color;
+  background: $table-th-background;
+}
+
+.ant-table-tbody > tr > td {
+  background: $table-td-background;
+}
+
+.ant-menu-item-selected {
+  background-color: $bg-hover-color !important;
+}
+
+.ant-menu-item-active {
+  &:hover {
+    background-color: $bg-hover-color !important;
+  }
+  &:active {
+    background-color: $bg-hover-color !important;
+  }
+}
+
+.ant-form-item {
+  margin-bottom: 12px;
+}
+
+label {
+  padding: 1px;
 }

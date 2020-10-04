@@ -1,19 +1,5 @@
 @import 'src/assets/variables';
 
-.login-page, .register-page {
-  .auth-title {
-    text-align: center;
-  }
+.login-page {
 
-  .auth-form-submit-button {
-    width: 100%;
-    background-color: $bg-color;
-    border-color: $bg-color;
-  }
-
-  .auth-title {
-    color: $bg-color;
-    font-size: 30px;
-    font-weight: 700;
-  }
 }
