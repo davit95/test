@@ -11,13 +11,16 @@ Backend configuration
 
 4) in .env file set the following credentials
 	DB_DATABASE=laravel
+
 	DB_USERNAME=root
+	
 	DB_PASSWORD=secret
 
 5) run composer install
 
 6) for linux: 
 	sudo chmod -R 777 storage/
+
 	sudo chmod -R 777 bootstrap/
 
 7) run:
@@ -28,7 +31,9 @@ Backend configuration
 
 9) run
 	php artisan migrate
+	
 	php artisan db:seed
+
 	php artisan passport:install
 
 Frontend configuration
