@@ -67,10 +67,6 @@ class Register extends React.Component {
                                             required: true,
                                             message: 'Please confirm your password!',
                                         },
-                                        {
-                                            min: 5,
-                                            max: 15
-                                        },
                                         ({ getFieldValue }) => ({
                                             validator(rule, value) {
                                                 if (!value || getFieldValue('password') === value) {

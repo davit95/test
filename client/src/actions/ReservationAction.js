@@ -42,7 +42,7 @@ export const getReservations = () => {
     }
 }
 
-export const getReservation = (id) => {
+export const getReservation = (id, redirect) => {
     return async (dispatch, getState) => {
         dispatch({
             type: GET_RESERVATION_BY_ID_REQUEST
@@ -61,12 +61,13 @@ export const getReservation = (id) => {
                 type: GET_RESERVATION_BY_ID_FAIL
             });
             alertMessage(alert, message);
+            redirect();
         }
 
     }
 }
 
-export const updateReservation = (data, id) => {
+export const updateReservation = (data, id, redirect) => {
     return async (dispatch, getState) => {
         dispatch({
             type: UPDATE_RESERVATION_REQUEST
@@ -81,6 +82,7 @@ export const updateReservation = (data, id) => {
                 reservation: reservation
             });
             alertMessage(alert, message);
+            redirect();
         } catch (error) {
             const { alert, message } = error.response.data;
             dispatch({
@@ -92,7 +94,7 @@ export const updateReservation = (data, id) => {
     }
 }
 
-export const addReservation = (data) => {
+export const addReservation = (data, redirect) => {
     return async (dispatch, getState) => {
         dispatch({
             type: ADD_RESERVATION_REQUEST
@@ -108,6 +110,7 @@ export const addReservation = (data) => {
                 reservation: reservation
             });
             alertMessage(alert, message);
+            redirect();
         } catch (error) {
             const { alert, message } = error.response.data;
             dispatch({

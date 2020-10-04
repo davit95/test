@@ -19,7 +19,7 @@ class CreateReservationsTable extends Migration
             $table->integer('room_id')->unsigned()->index()->nullable();
             $table->timestamp('start_date');
             $table->timestamp('end_date');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->timestamps();
             /**
              * Table relations

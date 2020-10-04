@@ -26,12 +26,11 @@ class ReservationForm extends Component {
         if (action === ADD) {
             data.room_id = room_id;
             data.user_id = JSON.parse(localStorage.getItem('user_id'));
-            await this.props.addReservation(data);
+            await this.props.addReservation(data, this.redirect);
         }
         if (action === UPDATE) {
-            await this.props.updateReservation(data, id);
+            await this.props.updateReservation(data, id, this.redirect);
         }
-        this.redirect();
     }
 
     redirect = () => {
@@ -56,6 +55,11 @@ class ReservationForm extends Component {
                     <Row justify={'center'}>
                         <Col span={8}>
                             <h1 className="page-title">{`${actionText} Form`}</h1>
+                            <h1 className="room-name">
+                                {
+                                    action === UPDATE ? reservation.roomName : null
+                                }
+                            </h1>
                         </Col>
                     </Row>
                     <Divider />
@@ -68,33 +72,6 @@ class ReservationForm extends Component {
                                 initialValues={reservation}
                                 onFinish={(values, id) => this.onFinish(values, reservation.id)}
                             >
-                                <Form.Item
-                                    label="Date"
-                                    labelCol={{ span: 24 }}
-                                    name="date"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please input armenian name!',
-                                        },
-                                    ]}
-                                >
-                                    <RangePicker
-                                        disabledDate={this.disableDateRange} format={'YYYY-MM-DD hh:mm:ss'} showTime />
-                                </Form.Item>
-                                <Form.Item
-                                    name="notes"
-                                    label="notes"
-                                    labelCol={{ span: 24 }}
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'Please input armenian name!',
-                                        },
-                                    ]}
-                                >
-                                    <Input.TextArea />
-                                </Form.Item>
                                 {
                                     action === ADD &&
                                     <Form.Item
@@ -124,6 +101,27 @@ class ReservationForm extends Component {
                                         </Select>
                                     </Form.Item>
                                 }
+                                <Form.Item
+                                    label="Date"
+                                    labelCol={{ span: 24 }}
+                                    name="date"
+                                    rules={[
+                                        {
+                                            required: true,
+                                            message: 'Please input armenian name!',
+                                        },
+                                    ]}
+                                >
+                                    <RangePicker
+                                        disabledDate={this.disableDateRange} format={'YYYY-MM-DD hh:mm:ss'} showTime />
+                                </Form.Item>
+                                <Form.Item
+                                    name="notes"
+                                    label="Notes"
+                                    labelCol={{ span: 24 }}
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
                                 <Form.Item>
                                     <Button
                                         htmlType="submit"
@@ -158,8 +156,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispacth => {
     return {
-        updateReservation: (data, id) => dispacth(updateReservation(data, id)),
-        addReservation: (data) => dispacth(addReservation(data)),
+        updateReservation: (data, id, redirect) => dispacth(updateReservation(data, id, redirect)),
+        addReservation: (data, redirect) => dispacth(addReservation(data, redirect)),
     }
 }
 

@@ -11,11 +11,10 @@ import {UPDATE} from '../../constants/actions';
 class EditReservation extends React.Component {
     componentDidMount() {
         const { id } = this.props.match.params;
-        this.props.getReservation(id);
+        this.props.getReservation(id, this.redirect);
     }
 
     redirect = (errorMessage) => {
-        message.error(errorMessage);
         this.props.history.push('/reservation-list');
     }
 
@@ -31,6 +30,7 @@ class EditReservation extends React.Component {
                             </Col>
                         </Row>
                     ) : <ReservationForm
+                        roomName={'reservation'}
                         reservation={reservation}
                         actionText={RESERVATION_FORM_ACTION_EDIT}
                         action={UPDATE}
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispacth => {
     return {
-        getReservation: id => dispacth(getReservation(id)),
+        getReservation: (id, redirect) => dispacth(getReservation(id, redirect)),
     }
 }
 

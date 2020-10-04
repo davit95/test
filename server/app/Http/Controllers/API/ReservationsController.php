@@ -41,6 +41,7 @@ class ReservationsController extends Controller
     {
         $reservation = $this->reservationRepository->getReservationById($id);
         if ($reservation) {
+            $reservation['roomName'] = $reservation->room->name;
             return response()->json(['reservation' => $reservation], 200);
         }
         return response()->json([
@@ -114,8 +115,8 @@ class ReservationsController extends Controller
             ], 500);
         }
         return response()->json([
-            'message' => 'The room is not available. Please select another date range',
-            'alert' => config('alert.messages.warning')
+            'message' => 'This room is not available for the selected date range',
+            'alert' => config('alert.messages.error')
         ], 403);
     }
 

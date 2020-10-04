@@ -32,7 +32,7 @@ class ReservationRepository
      */
     public function getReservationById($id)
     {
-        return $this->reservation->find($id);
+        return $this->reservation->with('room')->find($id);
     }
 
     /**
@@ -72,6 +72,8 @@ class ReservationRepository
         if (!empty($reservations)) {
             foreach ($reservations as $reservation) {
                 if (
+                    ($start >= $end) ||
+                    ($start < strtotime('now')) ||
                     ($start > strtotime($reservation->start_date) && $start < strtotime($reservation->end_date)) ||
                     ($end > strtotime($reservation->start_date) && $end < strtotime($reservation->end_date)) ||
                     ($start < strtotime($reservation->start_date) && $end > strtotime($reservation->end_date)) ||

@@ -7,6 +7,13 @@
   font-weight: $page-title-font-weight;
 }
 
+.room-name {
+  text-align: center;
+  color: $bg-color;
+  font-size: $room-name-font-size;
+  font-weight: $room-name-font-weight;
+}
+
 .form-submit-button, .link-button {
   width: 100%;
   background-color: $bg-color;
