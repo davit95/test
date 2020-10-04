@@ -19,6 +19,8 @@ class RoomsSeeder extends Seeder
             'Boulevard South Office Center',
             'Dublin Blvd. Office Center',
             'Middlefield Office Center',
+            '10th Street Office Center',
+            'Pescadero Office Center'
         ];
         foreach ($rooms as $roomName) {
             $roomData[] = [
