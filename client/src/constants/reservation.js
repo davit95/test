@@ -1,6 +1,6 @@
 export const RESERVATION_FORM_ACTION_ADD = 'Add Reservation';
 
-export const RESERVATION_FORM_ACTION_EDIT = 'Update Reservation';
+export const RESERVATION_FORM_ACTION_EDIT = 'Update';
 
 export const GET_RESERVATIONS_REQUEST = 'GET_RESERVATION_REQUEST';
 
