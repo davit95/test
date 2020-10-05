@@ -20,17 +20,16 @@ Backend configuration
 5) run composer install
 
 6) for linux: 
+
 	sudo chmod -R 777 storage/
 
 	sudo chmod -R 777 bootstrap/
 
 7) run:
+
 	php artisan key:generate
 
 8) run:
-	php artisan serve
-
-9) run:
 
 	php artisan migrate
 	
@@ -38,11 +37,16 @@ Backend configuration
 
 	php artisan passport:install
 
+9) run:
+
+	php artisan serve
+
 Frontend configuration
 
 1) cd project/client
 
 2) run:
+
 	npm install
 
 3) in http.js file change the baseUrl port from 8000 to the port which server runs in
