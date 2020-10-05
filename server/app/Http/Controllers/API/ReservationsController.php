@@ -23,10 +23,11 @@ class ReservationsController extends Controller
     {
         $reservations = $this->reservationRepository->getReservations();
         if (!$reservations) {
-            return response()->json([
-                'message' => 'Something went wrong. Please try later',
-                'alert' => config('alert.messages.error')
-            ], 500);
+            return generateResponse(
+                config('alert.messages.error'),
+                'Something went wrong. Please try later',
+                500
+            );
         }
         $result = $this->getReservationsData($reservations);
         return response()->json(['reservations' => $result], 200);
@@ -44,10 +45,11 @@ class ReservationsController extends Controller
             $reservation['roomName'] = $reservation->room->name;
             return response()->json(['reservation' => $reservation], 200);
         }
-        return response()->json([
-            'message' => 'Reservation with id : ' . $id . ' not found!',
-            'alert' => config('alert.messages.error')
-        ], 500);
+        return generateResponse(
+            config('alert.messages.error'),
+            'Reservation with id : ' . $id . ' not found!',
+            500
+        );
     }
 
     /**
@@ -61,21 +63,25 @@ class ReservationsController extends Controller
         $roomId = $request->get('room_id');
         if ($this->reservationRepository->isRoomAvailable($startDate, $endDate, $roomId)) {
             if ($reservation = $this->reservationRepository->createReservation($request->all())) {
-                return response()->json([
-                    'reservation' => $reservation,
-                    'alert' => config('alert.messages.success'),
-                    'message' => 'The reservation has been successfully created!'
-                ], 200);
+                return generateResponse(
+                    config('alert.messages.success'),
+                    'The reservation has been successfully created!',
+                    200,
+                    'reservation',
+                    $reservation
+                );
             }
-            return response()->json([
-                'message' => 'Something went wrong. Please try later',
-                'alert' => config('alert.messages.error')
-            ], 500);
+            return generateResponse(
+                config('alert.messages.error'),
+                'Something went wrong. Please try later',
+                500
+            );
         }
-        return response()->json([
-            'message' => 'The room is not available. Please select another date range',
-            'alert' => config('alert.messages.warning')
-        ], 500);
+        return generateResponse(
+            config('alert.messages.warning'),
+            'The room is not available. Please select another date range',
+            500
+        );
     }
 
     /**
@@ -91,10 +97,11 @@ class ReservationsController extends Controller
         }
         $reservation = $this->reservationRepository->getReservationById($id);
         if (!$reservation) {
-            return response()->json([
-                'message' => 'Reservation not found',
-                'alert' => config('alert.messages.warning')
-            ]);
+            return generateResponse(
+                config('alert.messages.warning'),
+                'Reservation not found',
+                404
+            );
         }
         $data = $this->unsetUnnecessaryData($request->all());
         if ($this->reservationRepository->isRoomAvailable(
@@ -103,21 +110,25 @@ class ReservationsController extends Controller
             $reservation->room_id
         )) {
             if ($reservation = $this->reservationRepository->updateReservation($reservation, $data)) {
-                return response()->json([
-                    'reservation' => $reservation,
-                    'alert' => config('alert.messages.success'),
-                    'message' => 'You have successfully updated the reservation!'
-                ], 200);
+                return generateResponse(
+                    config('alert.messages.success'),
+                    'You have successfully updated the reservation!',
+                    200,
+                    'reservation',
+                    $reservation
+                );
             }
-            return response()->json([
-                'message' => 'Something went wrong. Please try later',
-                'alert' => config('alert.messages.error')
-            ], 500);
+            return generateResponse(
+                config('alert.messages.error'),
+                'Something went wrong. Please try later',
+                500
+            );
         }
-        return response()->json([
-            'message' => 'This room is not available for the selected date range',
-            'alert' => config('alert.messages.error')
-        ], 403);
+        return generateResponse(
+            config('alert.messages.error'),
+            'This room is not available for the selected date range',
+            403
+        );
     }
 
     /**

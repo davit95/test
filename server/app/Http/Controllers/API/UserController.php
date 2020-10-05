@@ -29,11 +29,11 @@ class UserController extends Controller
             'name' => 'required|string|max:100',
         ]);
         if ($validator->fails()) {
-            return response([
-                'errors' => $validator->errors()->all(),
-                'alert' => config('alert.messages.warning'),
-                'message' => 'The user with given email already exists. Please provide another one'
-            ], 422);
+            return generateResponse(
+                config('alert.messages.warning'),
+                'The user with given email already exists. Please provide another one',
+                422
+            );
         }
         $request['password'] = bcrypt($request['password']);
         $user = $this->userRepository->createUser($request->all());
@@ -47,10 +47,11 @@ class UserController extends Controller
                 'alert' => config('alert.messages.success'),
             ], 200);
         }
-        return response()->json([
-            'message' => 'Something went wrong. Please try later',
-            'alert' => config('alert.messages.error')
-        ], 500);
+        return generateResponse(
+            config('alert.messages.error'),
+            'Something went wrong. Please try later',
+            500
+        );
     }
 
     public function login(Request $request)
@@ -61,10 +62,11 @@ class UserController extends Controller
         ]);
         $credentials = request(['email', 'password']);
         if (!\Auth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Invalid Username or Password',
-                'alert' => config('alert.messages.warning')
-            ], 401);
+            return generateResponse(
+                config('alert.messages.warning'),
+                'Invalid Username or Password',
+                401
+            );
         }
         $user = $request->user();
         $token = $this->userRepository->createToken($user);
@@ -84,15 +86,17 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         if ($request->user()->token()->revoke()) {
-            return response()->json([
-                'message' => 'Successfully logged out',
-                'alert' => config('alert.messages.success')
-            ], 200);
+            return generateResponse(
+                config('alert.messages.success'),
+                'Successfully logged out',
+                200
+            );
         }
-        return response()->json([
-            'message' => 'Something went wrong. Please try later',
-            'alert' => config('alert.messages.error')
-        ], 500);
+        return generateResponse(
+            config('alert.messages.error'),
+            'Something went wrong. Please try later',
+            500
+        );
     }
 
     /**
@@ -104,8 +108,10 @@ class UserController extends Controller
         if ($user = $request->user()) {
             return response()->json($user);
         }
-        return response()->json([
-            'message' => 'Something went wrong. Please try later'
-        ], 500);
+        return generateResponse(
+            config('alert.messages.error'),
+            'Something went wrong. Please try later',
+            500
+        );
     }
 }

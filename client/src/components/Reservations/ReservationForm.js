@@ -25,7 +25,6 @@ class ReservationForm extends Component {
         };
         if (action === ADD) {
             data.room_id = room_id;
-            data.user_id = JSON.parse(localStorage.getItem('user_id'));
             await this.props.addReservation(data, this.redirect);
         }
         if (action === UPDATE) {
@@ -113,7 +112,10 @@ class ReservationForm extends Component {
                                     ]}
                                 >
                                     <RangePicker
-                                        disabledDate={this.disableDateRange} format={'YYYY-MM-DD hh:mm:ss'} showTime />
+                                        disabledDate={this.disableDateRange}
+                                        format={'YYYY-MM-DD hh:mm:ss'}
+                                        showTime
+                                    />
                                 </Form.Item>
                                 <Form.Item
                                     name="notes"

@@ -16,8 +16,10 @@ class RoomsController extends Controller
         if ($rooms = $roomRepository->getRooms()) {
             return response()->json($rooms, 200);
         }
-        return response()->json([
-            'message' => 'Can not load rooms. Please try later!'
-        ], 500);
+        return generateResponse(
+            config('alert.messages.error'),
+            'Can not load rooms. Please try later!',
+            500
+        );
     }
 }

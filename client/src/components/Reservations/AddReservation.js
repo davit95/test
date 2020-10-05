@@ -50,9 +50,9 @@ const mapStateToProps = (state) => ({
     errorMessage: state.room.errorMessage
 })
 
-const mapDispatchToProps = dispacth => {
+const mapDispatchToProps = dispatch => {
     return {
-        getRooms: () => dispacth(getRooms()),
+        getRooms: () => dispatch(getRooms()),
     }
 }
 

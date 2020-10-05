@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {Spin, message, Row, Col} from 'antd';
+import {Spin, Row, Col} from 'antd';
 import ReservationForm from './ReservationForm';
 import {RESERVATION_FORM_ACTION_EDIT} from '../../constants/reservation';
 import {getReservation} from '../../actions/ReservationAction';

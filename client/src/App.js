@@ -6,7 +6,6 @@ import 'antd/dist/antd.css';
 import './assets/common.scss';
 
 import AppRouter from './components/App/AppRouter';
-
 import rootReducer from './reducers/rootReducer';
 
 const store = createStore(
