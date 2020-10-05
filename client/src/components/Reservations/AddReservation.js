@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect, useSelector, useDispatch} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {Col, Row, Spin, message} from 'antd';
+import {Col, Row, Spin} from 'antd';
 import ReservationForm from './ReservationForm';
 import {RESERVATION_FORM_ACTION_ADD} from '../../constants/reservation';
 import {ADD} from '../../constants/actions';
