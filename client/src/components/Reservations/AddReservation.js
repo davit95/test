@@ -7,34 +7,6 @@ import {RESERVATION_FORM_ACTION_ADD} from '../../constants/reservation';
 import {ADD} from '../../constants/actions';
 import {getRooms} from "../../actions/RoomAction";
 
-// export default function () {
-//     const dispatch = useDispatch();
-//     const { loading, rooms } = useSelector(state => state.room);
-//     useEffect(() => {
-//         dispatch(getRooms(alert));
-//     }, []);
-//
-//     return (
-//         <>
-//             {
-//                 loading ? (
-//                     <Row justify={'center'}>
-//                         <Col>
-//                             <Spin />
-//                         </Col>
-//                     </Row>
-//                 ) : <ReservationForm
-//                     action={ADD}
-//                     actionText={RESERVATION_FORM_ACTION_ADD}
-//                     reservation={{}}
-//                     rooms={rooms}
-//                 />
-//
-//             }
-//         </>
-//     )
-// }
-
 class AddReservation extends React.Component {
     componentDidMount() {
         this.props.getRooms();
@@ -79,4 +51,35 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddReservation)
+export default connect(mapStateToProps, mapDispatchToProps)(AddReservation);
+
+
+// This section is commented to demonstrate both functional and class component approaches
+
+// export default function () {
+//     const dispatch = useDispatch();
+//     const { loading, rooms } = useSelector(state => state.room);
+//     useEffect(() => {
+//         dispatch(getRooms());
+//     }, []);
+//
+//     return (
+//         <>
+//             {
+//                 loading ? (
+//                     <Row justify={'center'}>
+//                         <Col>
+//                             <Spin />
+//                         </Col>
+//                     </Row>
+//                 ) : <ReservationForm
+//                     action={ADD}
+//                     actionText={RESERVATION_FORM_ACTION_ADD}
+//                     reservation={{}}
+//                     rooms={rooms}
+//                 />
+//
+//             }
+//         </>
+//     )
+// }
