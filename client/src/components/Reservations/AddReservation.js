@@ -40,11 +40,6 @@ class AddReservation extends React.Component {
         this.props.getRooms();
     }
 
-    alert = (errorMessage) => {
-        message.error(errorMessage);
-        this.props.history.push('/reservation-list');
-    }
-
     render() {
         const { rooms, loading, errorMessage } = this.props;
         if (errorMessage) {

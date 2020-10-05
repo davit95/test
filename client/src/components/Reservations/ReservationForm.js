@@ -80,7 +80,7 @@ class ReservationForm extends Component {
                                         rules={[
                                             {
                                                 required: true,
-                                                message: 'Please input armenian name!',
+                                                message: 'You must select room!',
                                             },
                                         ]}
                                     >
@@ -107,7 +107,7 @@ class ReservationForm extends Component {
                                     rules={[
                                         {
                                             required: true,
-                                            message: 'Please input armenian name!',
+                                            message: 'Date field is required!',
                                         },
                                     ]}
                                 >
