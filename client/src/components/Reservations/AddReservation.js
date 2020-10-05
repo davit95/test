@@ -1,11 +1,39 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React, {useEffect} from 'react';
+import {connect, useSelector, useDispatch} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {Col, message, Row, Spin} from 'antd';
+import {Col, Row, Spin, message} from 'antd';
 import ReservationForm from './ReservationForm';
 import {RESERVATION_FORM_ACTION_ADD} from '../../constants/reservation';
 import {ADD} from '../../constants/actions';
 import {getRooms} from "../../actions/RoomAction";
+
+// export default function () {
+//     const dispatch = useDispatch();
+//     const { loading, rooms } = useSelector(state => state.room);
+//     useEffect(() => {
+//         dispatch(getRooms(alert));
+//     }, []);
+//
+//     return (
+//         <>
+//             {
+//                 loading ? (
+//                     <Row justify={'center'}>
+//                         <Col>
+//                             <Spin />
+//                         </Col>
+//                     </Row>
+//                 ) : <ReservationForm
+//                     action={ADD}
+//                     actionText={RESERVATION_FORM_ACTION_ADD}
+//                     reservation={{}}
+//                     rooms={rooms}
+//                 />
+//
+//             }
+//         </>
+//     )
+// }
 
 class AddReservation extends React.Component {
     componentDidMount() {
@@ -45,9 +73,9 @@ class AddReservation extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.reservation.loading,
+    loading: state.room.loading,
     rooms: state.room.rooms,
-    errorMessage: state.room.errorMessage
+    message: state.room.message
 })
 
 const mapDispatchToProps = dispatch => {

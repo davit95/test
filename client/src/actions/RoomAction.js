@@ -4,8 +4,9 @@ import {
     GET_ROOMS_REQUEST_SUCCESS,
     GET_ROOMS_REQUEST_FAIL
 } from '../constants/room';
+import {alertMessage} from '../components/Alert/Alert';
 
-export const getRooms = () => {
+export const getRooms = (alert) => {
     return async (dispatch, getState) => {
         dispatch({
             type: GET_ROOMS_REQUEST
@@ -18,10 +19,12 @@ export const getRooms = () => {
                 rooms: rooms
             });
         } catch (error) {
+            const { message, alert } = error.response.data;
             dispatch({
                 type: GET_ROOMS_REQUEST_FAIL,
-                message: error.response.data.message
-            })
+                message: message
+            });
+            alertMessage(alert, message);
         }
 
     }

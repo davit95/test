@@ -7,7 +7,7 @@ import {
 const initState = {
     loading: false,
     rooms: [],
-    errorMessage: ''
+    message: null
 }
 
 const authReducer = (state = initState, action) => {
@@ -26,7 +26,7 @@ const authReducer = (state = initState, action) => {
         case GET_ROOMS_REQUEST_FAIL:
             return {
                 ...state,
-                errorMessage: action.message,
+                message: action.message,
                 loading: false
             }
         default:

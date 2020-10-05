@@ -14,7 +14,7 @@ class EditReservation extends React.Component {
         this.props.getReservation(id, this.redirect);
     }
 
-    redirect = (errorMessage) => {
+    redirect = () => {
         this.props.history.push('/reservation-list');
     }
 
