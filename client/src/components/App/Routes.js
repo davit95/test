@@ -14,7 +14,7 @@ import EditReservation from '../Reservations/EditReservation';
 import HeaderComponent from '../Main/HeaderComponent';
 
 
-const { Content } = Layout;
+const { Content, Footer } = Layout;
 
 const Routes = (props) => {
     return (
@@ -32,6 +32,7 @@ const Routes = (props) => {
                         <PrivateRoute exact path='/reservation/:id/edit' component={EditReservation} />
                     </Switch>
                 </Content>
+                <Footer />
             </Layout>
         </Router>
     );
